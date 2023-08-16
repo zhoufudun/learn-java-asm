@@ -24,13 +24,23 @@ public class ASMPrint {
     public static void main(String[] args) throws IOException {
         // (1) 设置参数
         String className = "sample.HelloWorld";
-        int parsingOptions = ClassReader.SKIP_FRAMES | ClassReader.SKIP_DEBUG;
-        boolean asmCode = true;
+        /**
+         * 推荐值：ClassReader.SKIP_FRAMES | ClassReader.SKIP_DEBUG
+         */
+        int parsingOptions = ClassReader.SKIP_FRAMES | ClassReader.SKIP_DEBUG; // 决定打印信息详细程度不一样，值为0最详细
+        boolean asmCode = true; // true, 会打印ASM代码， false 会打印对应的Instruction信息
 
         // (2) 打印结果
+//        Printer printer = asmCode ? new ASMifier() : new Textifier();
+//        PrintWriter printWriter = new PrintWriter(System.out, true);
+//        TraceClassVisitor traceClassVisitor = new TraceClassVisitor(null, printer, printWriter);
+//        new ClassReader(className).accept(traceClassVisitor, parsingOptions);
+
         Printer printer = asmCode ? new ASMifier() : new Textifier();
         PrintWriter printWriter = new PrintWriter(System.out, true);
         TraceClassVisitor traceClassVisitor = new TraceClassVisitor(null, printer, printWriter);
-        new ClassReader(className).accept(traceClassVisitor, parsingOptions);
+        ClassReader classReader = new ClassReader(className);
+        classReader.accept(traceClassVisitor, parsingOptions);
+
     }
 }

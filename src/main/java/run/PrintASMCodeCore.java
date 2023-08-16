@@ -20,6 +20,7 @@ public class PrintASMCodeCore {
     public static void main(String[] args) throws IOException {
         // (1) 设置参数
         String className = "sample.HelloWorld";
+//        String className = "java.lang.Comparable";
         int parsingOptions = ClassReader.SKIP_FRAMES | ClassReader.SKIP_DEBUG;
 
         // (2) 打印结果
