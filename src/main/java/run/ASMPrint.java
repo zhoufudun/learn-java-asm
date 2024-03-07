@@ -11,6 +11,9 @@ import java.io.PrintWriter;
 
 /**
  * Print asm code or text.
+ *
+ * function：打印一个类的ASM代码
+ *
  * 这里的代码是参考自{@link org.objectweb.asm.util.Printer}的main方法。
  * 推荐使用{@link PrintASMCodeCore}或 {@link PrintASMTextClass}类。
  *
@@ -28,7 +31,10 @@ public class ASMPrint {
          * 推荐值：ClassReader.SKIP_FRAMES | ClassReader.SKIP_DEBUG
          */
         int parsingOptions = ClassReader.SKIP_FRAMES | ClassReader.SKIP_DEBUG; // 决定打印信息详细程度不一样，值为0最详细
+//        int parsingOptions = ClassReader.SKIP_CODE; // 决定打印信息详细程度不一样，值为0最详细
+//        int parsingOptions = ClassReader.SKIP_DEBUG; // 决定打印信息详细程度不一样，值为0最详细
         boolean asmCode = true; // true, 会打印ASM代码， false 会打印对应的Instruction信息
+
 
         // (2) 打印结果
 //        Printer printer = asmCode ? new ASMifier() : new Textifier();

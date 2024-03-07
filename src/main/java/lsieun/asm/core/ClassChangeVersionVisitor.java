@@ -36,8 +36,16 @@ public class ClassChangeVersionVisitor extends ClassVisitor {
          */
         @Override
         public void visitLdcInsn(Object value) {
+            /**
+             * 修改字符串
+             */
             if(value instanceof String && "Hello World".equals(value)){
-                super.visitLdcInsn("Good morning");
+                super.visitLdcInsn("Hello World modify by asm");
+                return ;
+            }
+
+            if(value instanceof String && "val = 1".equals(value)){
+                super.visitLdcInsn("val = 1 modify by asm");
                 return ;
             }
             super.visitLdcInsn(value);
